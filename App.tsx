@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './estilo.css'; // ou './App.css' se você renomear
+import './estilo.css'; 
 
 function App() {
     const [name, setName] = useState('');

@@ -1,11 +1,11 @@
 import sqlite3 from 'sqlite3';
 import path from 'path';
 
-// Determine o caminho do banco de dados. Adapte isso conforme necessário para seu ambiente.
-const dbPath = path.resolve(__dirname, 'slnx.sqlite'); // Use path.resolve para caminhos absolutos
-const sqlite3db = sqlite3.verbose(); // Renomeado para evitar confusão com a instância
 
-let db: sqlite3.Database; // Declare db com o tipo correto
+const dbPath = path.resolve(__dirname, 'slnx.sqlite'); 
+const sqlite3db = sqlite3.verbose(); a
+
+let db: sqlite3.Database; 
 
 function connectToDatabase(): Promise<sqlite3.Database> {
   return new Promise((resolve, reject) => {
@@ -49,8 +49,8 @@ async function initializeDatabase() {
     await createUsersTable();
   } catch (error) {
     console.error('Falha ao inicializar o banco de dados:', error);
-    throw error; // Re-lança o erro para ser tratado em um nível superior
+    throw error; 
   }
 }
 
-export { initializeDatabase, db }; // Exporta a função de inicialização e a instância do banco de dados
+export { initializeDatabase, db }; 

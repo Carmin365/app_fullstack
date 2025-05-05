@@ -19,7 +19,7 @@ function validateCadastro(name, email) {
   const errors = [];
   if (!name) errors.push('Nome é obrigatório.');
   if (!email) errors.push('Email é obrigatório.');
-  // Adicione validações mais robustas aqui (ex: formato de email)
+  
   return errors;
 }
 

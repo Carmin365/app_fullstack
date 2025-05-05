@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import { Database } from 'sqlite3'; // Importar o tipo Database
-import { initializeDatabase } from './db'; // Importar a função de inicialização
-const dbPromise = initializeDatabase(); // Inicializar o banco de dados e obter a Promise
+import { Database } from 'sqlite3'; 
+import { initializeDatabase } from './db'; 
+const dbPromise = initializeDatabase(); 
 
 const app = express();
 const PORT = 3001;
@@ -10,13 +10,11 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
-// Middleware para tratamento de erros
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Algo deu errado!' });
 });
 
-// Função para validar os dados de cadastro
 function validateCadastro(name, email) {
   const errors = [];
   if (!name) errors.push('Nome é obrigatório.');
@@ -25,7 +23,6 @@ function validateCadastro(name, email) {
   return errors;
 }
 
-// Rota para inserir dados do formulário
 app.post('/cadastro', async (req, res, next) => {
   try {
     const { name, email } = req.body;
@@ -34,15 +31,15 @@ app.post('/cadastro', async (req, res, next) => {
       return res.status(400).json({ errors });
     }
 
-    const db = await dbPromise; // Aguardar a inicialização do banco
+    const db = await dbPromise; 
 
     const stmt = db.prepare('INSERT INTO users (name, email) VALUES (?, ?)');
     stmt.run(name, email, function (err) {
       if (err) {
         console.error(err);
-        return next(err); // Passar o erro para o middleware
+        return next(err); 
       }
-      res.json({ success: true, id: this.lastID }); // Envia o ID do novo usuário
+      res.json({ success: true, id: this.lastID }); 
     });
 
   } catch (error) {
